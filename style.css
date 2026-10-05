@@ -10,24 +10,79 @@
   padding: 0;
 }
 
-/* 2. Base & Typography */
+/* 2. Design Tokens (CSS Custom Properties) */
+:root {
+  /* Colors - Background */
+  --bg-color: #f1f5f9;
+  --card-bg: #ffffff;
+
+  /* Colors - Text */
+  --text-main: #0f172a;
+  --text-heading: #1e293b;
+  --text-muted: #64748b;
+  --text-label: #475569;
+
+  /* Colors - Border */
+  --border-color: #e2e8f0;
+
+  /* Colors - Primary (Blue) */
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --primary-text: #ffffff;
+  --primary-ring: rgba(59, 130, 246, 0.18);
+
+  /* Colors - Danger / Error */
+  --error: #dc2626;
+  --error-hover-bg: #fee2e2;
+  --error-hover-border: #fecaca;
+
+  /* Colors - Category: Personal (Teal) */
+  --cat-personal: #0d9488;
+  --cat-personal-bg: #f0fdfa;
+  --cat-personal-border: rgba(13, 148, 136, 0.2);
+
+  /* Colors - Category: Work (Dark Red) */
+  --cat-work: #991b1b;
+  --cat-work-bg: #fef2f2;
+  --cat-work-border: rgba(153, 27, 27, 0.2);
+
+  /* Colors - Category: Study (Blue) */
+  --cat-study: #2563eb;
+  --cat-study-bg: #eff6ff;
+  --cat-study-border: rgba(37, 99, 235, 0.2);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+
+  /* Transitions */
+  --transition: 0.2s ease;
+
+  /* Header gradient */
+  --header-bg-start: #1e293b;
+  --header-bg-end: #0f172a;
+  --header-subtle: #94a3b8;
+}
+
+/* 3. Base & Typography */
 body {
   font-family: "Segoe UI", Arial, sans-serif;
-  background-color: #f1f5f9;
-  color: #0f172a;
+  background-color: var(--bg-color);
+  color: var(--text-main);
   line-height: 1.5;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  transition: background-color var(--transition), color var(--transition);
 }
 
-/* 3. Header */
+/* 4. Header */
 header {
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--header-bg-start) 0%, var(--header-bg-end) 100%);
+  color: var(--primary-text);
   padding: 2.5rem 1.5rem;
   text-align: center;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-md);
 }
 
 .header-container {
@@ -50,7 +105,7 @@ header h1 {
 }
 
 .tagline {
-  color: #94a3b8;
+  color: var(--header-subtle);
   font-size: 1rem;
   font-weight: 400;
 }
@@ -59,12 +114,12 @@ header h1 {
 #theme-toggle {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  color: var(--primary-text);
   font-size: 1.15rem;
   padding: 0.35rem 0.6rem;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: background var(--transition), transform var(--transition);
   line-height: 1;
 }
 
@@ -73,7 +128,7 @@ header h1 {
   transform: scale(1.1);
 }
 
-/* 4. Main Area & Section Cards */
+/* 5. Main Area & Section Cards */
 main {
   flex: 1;
   width: 100%;
@@ -86,21 +141,22 @@ main {
 }
 
 .card-section {
-  background-color: #ffffff;
+  background-color: var(--card-bg);
   border-radius: 14px;
   padding: 1.75rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
-  border: 1px solid #e2e8f0;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  transition: background-color var(--transition), border-color var(--transition);
 }
 
 .card-section h2 {
   font-size: 1.35rem;
   font-weight: 600;
-  color: #1e293b;
+  color: var(--text-heading);
   margin-bottom: 1.25rem;
 }
 
-/* 5. Flexbox Form */
+/* 6. Flexbox Form */
 #note-form {
   display: flex;
   gap: 0.75rem;
@@ -117,7 +173,7 @@ main {
 .form-group label {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #475569;
+  color: var(--text-label);
 }
 
 .form-group-input {
@@ -140,26 +196,27 @@ select {
   padding: 0.7rem 0.9rem;
   font-size: 0.95rem;
   font-family: inherit;
-  color: #0f172a;
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  color: var(--text-main);
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color var(--transition), box-shadow var(--transition),
+    background-color var(--transition), color var(--transition);
 }
 
 input[type="text"]:focus,
 input[type="search"]:focus,
 select:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-ring);
 }
 
 select {
   cursor: pointer;
 }
 
-/* 6. Buttons & Hover Styles */
+/* 7. Buttons & Hover Styles */
 button {
   font-family: inherit;
   font-size: 0.95rem;
@@ -168,16 +225,16 @@ button {
   border-radius: 8px;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--transition);
 }
 
 #add-note-btn {
-  background-color: #3b82f6;
-  color: #ffffff;
+  background-color: var(--primary);
+  color: var(--primary-text);
 }
 
 #add-note-btn:hover {
-  background-color: #2563eb;
+  background-color: var(--primary-hover);
   box-shadow: 0 4px 8px rgba(37, 99, 235, 0.25);
   transform: translateY(-1px);
 }
@@ -187,12 +244,12 @@ button {
 }
 
 .btn-clear {
-  background-color: #fee2e2;
+  background-color: var(--error-hover-bg);
   color: #b91c1c;
   padding: 0.4rem 0.85rem;
   font-size: 0.825rem;
   border-radius: 6px;
-  border: 1px solid #fecaca;
+  border: 1px solid var(--error-hover-border);
 }
 
 .btn-clear:hover {
@@ -203,7 +260,7 @@ button {
 
 .delete-btn {
   background-color: transparent;
-  color: #94a3b8;
+  color: var(--text-muted);
   border: 1px solid transparent;
   padding: 0.35rem 0.7rem;
   font-size: 0.82rem;
@@ -211,21 +268,21 @@ button {
 }
 
 .delete-btn:hover {
-  background-color: #fee2e2;
-  color: #dc2626;
-  border-color: #fecaca;
+  background-color: var(--error-hover-bg);
+  color: var(--error);
+  border-color: var(--error-hover-border);
 }
 
-/* 7. Error Message */
+/* 8. Error Message */
 #error-message {
-  color: #dc2626;
+  color: var(--error);
   font-size: 0.875rem;
   font-weight: 500;
   min-height: 1.25rem;
   margin-top: 0.65rem;
 }
 
-/* 8. Controls Bar & Search */
+/* 9. Controls Bar & Search */
 .notes-header {
   display: flex;
   justify-content: space-between;
@@ -252,7 +309,7 @@ button {
   display: block;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #475569;
+  color: var(--text-label);
   margin-bottom: 0.35rem;
 }
 
@@ -269,11 +326,11 @@ button {
 
 #note-count {
   font-size: 0.9rem;
-  color: #64748b;
+  color: var(--text-muted);
   font-weight: 500;
 }
 
-/* 9. Notes List & Note Cards */
+/* 10. Notes List & Note Cards */
 #notes-list {
   list-style: none;
   display: flex;
@@ -286,15 +343,16 @@ button {
   justify-content: space-between;
   align-items: flex-start;
   padding: 1rem 1.15rem;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-color);
   border-radius: 10px;
   margin: 0;
-  background-color: #ffffff;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: var(--card-bg);
+  transition: transform var(--transition), box-shadow var(--transition),
+    background-color var(--transition), border-color var(--transition);
 }
 
 .note-card:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-md);
   transform: translateY(-1px);
 }
 
@@ -309,7 +367,7 @@ button {
 
 .note-text {
   font-size: 0.975rem;
-  color: #1e293b;
+  color: var(--text-heading);
   white-space: pre-wrap;
   line-height: 1.45;
 }
@@ -332,65 +390,66 @@ button {
 
 .note-date {
   font-size: 0.75rem;
-  color: #64748b;
+  color: var(--text-muted);
 }
 
-/* 10. Distinct Category Visual Styles */
+/* 11. Distinct Category Visual Styles */
 .category-personal {
-  border-left: 6px solid #0d9488;
+  border-left: 6px solid var(--cat-personal);
 }
 
 .category-personal .note-badge {
-  background-color: #f0fdfa;
-  color: #0d9488;
-  border: 1px solid rgba(13, 148, 136, 0.2);
+  background-color: var(--cat-personal-bg);
+  color: var(--cat-personal);
+  border: 1px solid var(--cat-personal-border);
 }
 
 .category-work {
-  border-left: 6px solid #991b1b;
+  border-left: 6px solid var(--cat-work);
 }
 
 .category-work .note-badge {
-  background-color: #fef2f2;
-  color: #991b1b;
-  border: 1px solid rgba(153, 27, 27, 0.2);
+  background-color: var(--cat-work-bg);
+  color: var(--cat-work);
+  border: 1px solid var(--cat-work-border);
 }
 
 .category-study {
-  border-left: 6px solid #2563eb;
+  border-left: 6px solid var(--cat-study);
 }
 
 .category-study .note-badge {
-  background-color: #eff6ff;
-  color: #2563eb;
-  border: 1px solid rgba(37, 99, 235, 0.2);
+  background-color: var(--cat-study-bg);
+  color: var(--cat-study);
+  border: 1px solid var(--cat-study-border);
 }
 
 /* Empty / No Matches State */
 .empty-notes-message {
   text-align: center;
   padding: 2.25rem 1rem;
-  color: #64748b;
+  color: var(--text-muted);
   font-style: italic;
   font-size: 0.95rem;
   background-color: #f8fafc;
-  border: 1px dashed #e2e8f0;
+  border: 1px dashed var(--border-color);
   border-radius: 10px;
   list-style: none;
 }
 
-/* 11. Footer */
+/* 12. Footer */
 footer {
   text-align: center;
   padding: 1.75rem 1rem;
   margin-top: auto;
-  color: #64748b;
+  color: var(--text-muted);
   font-size: 0.85rem;
-  border-top: 1px solid #e2e8f0;
-  background-color: #ffffff;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  transition: background-color var(--transition), border-color var(--transition);
 }
 
-/* 12. Responsive Design (Mobile / Narrow Screens) */
+/* 13. Responsive Design (Mobile / Narrow Screens) */
 @media (max-width: 600px) {
   header {
     padding: 1.75rem 1rem;
@@ -439,89 +498,33 @@ footer {
   }
 }
 
-/* Dark Mode */
+/* ==========================================================================
+   Dark Mode  (body.dark overrides the root tokens via class)
+   ========================================================================== */
 body.dark {
-  background-color: #0f172a;
-  color: #e2e8f0;
-}
-
-body.dark .card-section {
-  background-color: #1e293b;
-  border-color: #334155;
-}
-
-body.dark .card-section h2 {
-  color: #f1f5f9;
-}
-
-body.dark input[type="text"],
-body.dark input[type="search"],
-body.dark select {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: #e2e8f0;
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --text-main: #e2e8f0;
+  --text-heading: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-label: #94a3b8;
+  --border-color: #334155;
+  --error: #f87171;
+  --error-hover-bg: rgba(220, 38, 38, 0.15);
+  --error-hover-border: rgba(220, 38, 38, 0.3);
+  --primary-ring: rgba(96, 165, 250, 0.2);
 }
 
 body.dark input[type="text"]:focus,
 body.dark input[type="search"]:focus,
 body.dark select:focus {
   border-color: #60a5fa;
-  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
-}
-
-body.dark .note-card {
-  background-color: #1e293b;
-  border-color: #334155;
 }
 
 body.dark .note-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
-body.dark .note-text {
-  color: #e2e8f0;
-}
-
-body.dark .note-date {
-  color: #94a3b8;
-}
-
-body.dark .delete-btn {
-  color: #64748b;
-}
-
-body.dark .delete-btn:hover {
-  background-color: rgba(220, 38, 38, 0.15);
-  color: #f87171;
-  border-color: rgba(220, 38, 38, 0.3);
-}
-
-body.dark #note-count {
-  color: #94a3b8;
-}
-
 body.dark .empty-notes-message {
-  background-color: #1e293b;
-  border-color: #334155;
-  color: #64748b;
+  background-color: #0f172a;
 }
-
-body.dark footer {
-  background-color: #1e293b;
-  border-color: #334155;
-  color: #64748b;
-}
-
-body.dark .form-group label,
-body.dark .search-label {
-  color: #94a3b8;
-}
-
-body.dark #error-message {
-  color: #f87171;
-}
-
-body.dark .notes-header h2 {
-  color: #f1f5f9;
-}
-
