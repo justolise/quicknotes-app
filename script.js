@@ -9,9 +9,11 @@ const searchInput = document.querySelector('#search-input');
 const notesList = document.querySelector('#notes-list');
 const noteCount = document.querySelector('#note-count');
 const clearAllBtn = document.querySelector('#clear-all-btn');
+const themeToggleBtn = document.querySelector('#theme-toggle');
 
 // 2. Notes stored as an array of objects: { id, text, category, createdAt }
 const STORAGE_KEY = 'quicknotes_app_notes';
+const THEME_KEY = 'quicknotes_theme';
 let notes = [];
 
 // 3. LocalStorage: load saved notes
@@ -202,3 +204,28 @@ if (clearAllBtn) {
 // 12. Initial load from localStorage
 loadNotes();
 render();
+
+// 13. Dark mode: apply saved theme preference on page load
+function applyTheme(theme) {
+  if (theme === 'dark') {
+    document.body.classList.add('dark');
+    if (themeToggleBtn) themeToggleBtn.textContent = '☀️';
+  } else {
+    document.body.classList.remove('dark');
+    if (themeToggleBtn) themeToggleBtn.textContent = '🌙';
+  }
+}
+
+const savedTheme = localStorage.getItem(THEME_KEY) || 'light';
+applyTheme(savedTheme);
+
+// 14. Dark mode: toggle on button click
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener('click', () => {
+    const isDark = document.body.classList.contains('dark');
+    const newTheme = isDark ? 'light' : 'dark';
+    localStorage.setItem(THEME_KEY, newTheme);
+    applyTheme(newTheme);
+  });
+}
+

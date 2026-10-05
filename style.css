@@ -35,17 +35,42 @@ header {
   margin: 0 auto;
 }
 
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.4rem;
+}
+
 header h1 {
   font-size: 2.25rem;
   font-weight: 700;
   letter-spacing: -0.025em;
-  margin-bottom: 0.4rem;
 }
 
 .tagline {
   color: #94a3b8;
   font-size: 1rem;
   font-weight: 400;
+}
+
+/* Theme toggle button */
+#theme-toggle {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 1.15rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  line-height: 1;
+}
+
+#theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
 }
 
 /* 4. Main Area & Section Cards */
@@ -413,3 +438,90 @@ footer {
     align-self: flex-end;
   }
 }
+
+/* Dark Mode */
+body.dark {
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+body.dark .card-section {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+body.dark .card-section h2 {
+  color: #f1f5f9;
+}
+
+body.dark input[type="text"],
+body.dark input[type="search"],
+body.dark select {
+  background-color: #0f172a;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+body.dark input[type="text"]:focus,
+body.dark input[type="search"]:focus,
+body.dark select:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+}
+
+body.dark .note-card {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+body.dark .note-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+body.dark .note-text {
+  color: #e2e8f0;
+}
+
+body.dark .note-date {
+  color: #94a3b8;
+}
+
+body.dark .delete-btn {
+  color: #64748b;
+}
+
+body.dark .delete-btn:hover {
+  background-color: rgba(220, 38, 38, 0.15);
+  color: #f87171;
+  border-color: rgba(220, 38, 38, 0.3);
+}
+
+body.dark #note-count {
+  color: #94a3b8;
+}
+
+body.dark .empty-notes-message {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #64748b;
+}
+
+body.dark footer {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #64748b;
+}
+
+body.dark .form-group label,
+body.dark .search-label {
+  color: #94a3b8;
+}
+
+body.dark #error-message {
+  color: #f87171;
+}
+
+body.dark .notes-header h2 {
+  color: #f1f5f9;
+}
+
